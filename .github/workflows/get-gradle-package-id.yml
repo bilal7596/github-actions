@@ -1,4 +1,4 @@
-name: Get Maven Package Version ID
+name: Get Gradle Package Version ID
 
 on:
   workflow_dispatch:
