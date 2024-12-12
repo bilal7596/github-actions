@@ -44,6 +44,10 @@ jobs:
       run: |
         echo "version=${{ github.event.inputs.version_id }}" >> gradle.properties
 
+    - name: Print
+      run: |
+        pwd
+
     - name: Build with Gradle
       working-directory: workspace
       run: ./gradlew clean build publish
