@@ -29,7 +29,6 @@ jobs:
       with:
           repository: ${{ github.event.inputs.repository_name }}
           ref: ${{ github.event.inputs.branch_name }}
-          path: workspace
 
     - name: Set up Java
       uses: actions/setup-java@v4
@@ -37,43 +36,47 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
-
 #    - name: Set Gradle Version
 #      working-directory: workspace
 #      run: |
 #        echo "version=${{ github.event.inputs.version_id }}" >> gradle.properties
+    - name: P
+      run: echo ${{ github.workspace }}
+
+    - name: P1
+      run: ls -la
+
+    - name: P4
+      working-directory: ${{ github.workspace }}
+      run: ls -la
+
+    - name: Print
+      working-directory: ${{ github.workspace }}
+      run: |
+        pwd
+
+    - name: Print2
+      working-directory: ${{ github.workspace }}
+      run: |
+        echo ${{ github.actor }}
+
+    - name: Print3
+      working-directory: ${{ github.workspace }}
+      run: |
+        echo ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
 
     - name: Build with Gradle
-      working-directory: workspace
+      working-directory: ${{ github.workspace }}
       run: ./gradlew clean build
       env:
         USERNAME: ${{ github.actor }}
         TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Print
-      working-directory: workspace/build/libs
-      run: |
-        pwd
-
-    - name: Print1
-      working-directory: workspace/build/libs
-      run: |
-        ls -la
-
-    - name: Print2
-      working-directory: workspace
-      run: |
-        echo ${{ github.actor }}
-
-    - name: Print3
-      working-directory: workspace
-      run: |
-        echo ${{ secrets.GITHUB_TOKEN }}
-
     - name: Publish the Gradle
-      working-directory: workspace
+      working-directory: ${{ github.workspace }}
       run: ./gradlew publish --info
       env:
         USERNAME: ${{ github.actor }}
