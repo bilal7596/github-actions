@@ -65,12 +65,12 @@ jobs:
     - name: Print2
       working-directory: workspace
       run: |
-        echo $System.getenv("USERNAME")
+        echo ${{ github.actor }}
 
     - name: Print3
       working-directory: workspace
       run: |
-        echo $System.getenv("TOKEN");
+        echo ${{ secrets.GITHUB_TOKEN }}
 
     - name: Publish the Gradle
       working-directory: workspace
