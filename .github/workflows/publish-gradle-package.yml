@@ -74,7 +74,7 @@ jobs:
 
     - name: Publish the Gradle
       working-directory: workspace
-      run: ./gradlew publish
+      run: ./gradlew publish --info
       env:
         USERNAME: ${{ github.actor }}
         TOKEN: ${{ secrets.GITHUB_TOKEN }}
