@@ -31,16 +31,6 @@ jobs:
           ref: ${{ github.event.inputs.branch_name }}
           path: workspace
 
-    - name: Print
-      working-directory: workspace
-      run: |
-        pwd
-
-    - name: Print1
-      working-directory: workspace
-      run: |
-        ls -la
-
     - name: Set up Java
       uses: actions/setup-java@v4
       with:
@@ -57,10 +47,20 @@ jobs:
 
     - name: Build with Gradle
       working-directory: workspace
-      run: ./gradlew clean build publish
+      run: ./gradlew clean build
       env:
         USERNAME: ${{ github.actor }}
         TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Print
+      working-directory: workspace/build/libs
+      run: |
+        pwd
+
+    - name: Print1
+      working-directory: workspace/build/libs
+      run: |
+        ls -la
 
     # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
     # the publishing section of your build.gradle
