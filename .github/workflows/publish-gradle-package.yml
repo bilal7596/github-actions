@@ -48,6 +48,10 @@ jobs:
       run: |
         pwd
 
+    - name: Print1
+      run: |
+        ls -la
+
     - name: Build with Gradle
       working-directory: workspace
       run: ./gradlew clean build publish
