@@ -31,6 +31,16 @@ jobs:
           ref: ${{ github.event.inputs.branch_name }}
           path: workspace
 
+    - name: Print
+      working-directory: workspace
+      run: |
+        pwd
+
+    - name: Print1
+      working-directory: workspace
+      run: |
+        ls -la
+
     - name: Set up Java
       uses: actions/setup-java@v4
       with:
@@ -41,18 +51,9 @@ jobs:
       uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
 
     - name: Set Gradle Version
+      working-directory: workspace
       run: |
         echo "version=${{ github.event.inputs.version_id }}" >> gradle.properties
-
-    - name: Print
-      working-directory: workspace
-      run: |
-        pwd
-
-    - name: Print1
-      working-directory: workspace
-      run: |
-        ls -la
 
     - name: Build with Gradle
       working-directory: workspace
