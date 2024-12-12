@@ -45,10 +45,12 @@ jobs:
         echo "version=${{ github.event.inputs.version_id }}" >> gradle.properties
 
     - name: Print
+      working-directory: workspace
       run: |
         pwd
 
     - name: Print1
+      working-directory: workspace
       run: |
         ls -la
 
