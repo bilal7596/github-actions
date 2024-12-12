@@ -62,6 +62,23 @@ jobs:
       run: |
         ls -la
 
+    - name: Print2
+      working-directory: workspace
+      run: |
+        echo $System.getenv("USERNAME")
+
+    - name: Print3
+      working-directory: workspace
+      run: |
+        echo $System.getenv("TOKEN");
+
+    - name: Publish the Gradle
+      working-directory: workspace
+      run: ./gradlew publish
+      env:
+        USERNAME: ${{ github.actor }}
+        TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
     # the publishing section of your build.gradle
 #    - name: Publish to GitHub Packages
