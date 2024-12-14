@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - id: foo
-        uses: bilal7596/hello-world-composite-action@SHA
+        uses: bilal7596/hello-world-composite-action@main
         with:
           who-to-greet: Bilal Basha
       - run: echo random-number "$RANDOM_NUMBER"
