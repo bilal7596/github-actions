@@ -27,8 +27,8 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a secret
-        run: echo ${{ secrets.TEST_SECRET }}
+        run: "echo ${{ secrets.TEST_SECRET }}"
 
       # Runs a set of commands using the runners shell
       - name: Read a variable
-        run: echo ${{ vars.TEST_VARIABLE }}
+        run: "echo ${{ vars.TEST_VARIABLE }}"
